@@ -40,7 +40,7 @@ void GraphNode::MoveChatbotHere(ChatBot *chatbot)
     _chatBot->SetCurrentNode(this);
 }
 
-void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
+void GraphNode::MoveChatbotToNewNode(std::unique_ptr<GraphNode> &newNode)
 {
     newNode->MoveChatbotHere(_chatBot);
     _chatBot = nullptr; // invalidate pointer at source

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "chatbot.h"
 
 
@@ -54,7 +55,7 @@ public:
     ////
     //// EOF STUDENT CODE
 
-    void MoveChatbotToNewNode(GraphNode *newNode);
+    void MoveChatbotToNewNode(std::unique_ptr<GraphNode> &newNode);
 };
 
 #endif /* GRAPHNODE_H_ */

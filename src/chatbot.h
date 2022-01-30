@@ -16,7 +16,7 @@ private:
 
     // data handles (not owned)
     GraphNode *_currentNode;
-    GraphNode *_rootNode;
+    std::unique_ptr<GraphNode> *_rootNode;
     const std::unique_ptr<ChatLogic> *_chatLogic;
 
     // proprietary functions
@@ -40,7 +40,7 @@ public:
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
-    void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
+    void SetRootNode(std::unique_ptr<GraphNode> *rootNode) { _rootNode = rootNode; }
     void SetChatLogicHandle(const std::unique_ptr<ChatLogic> &chatLogic) { _chatLogic = &chatLogic; }
     const std::unique_ptr<ChatLogic> *GetChatLogicHandle() { return _chatLogic; }
     wxBitmap *GetImageHandle() { return _image; }
