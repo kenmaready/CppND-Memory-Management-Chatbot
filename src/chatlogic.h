@@ -43,7 +43,7 @@ public:
     // getter / setter
     void SetPanelDialogHandle(ChatBotPanelDialog *panelDialog);
     void SetChatbotHandle(ChatBot *chatbot);
-    ChatBot *getChatbotHandle() const { return _chatBot; }
+    ChatBot *GetChatbotHandle() const { return _chatBot; }
 
     // proprietary functions
     void LoadAnswerGraphFromFile(std::string filename);

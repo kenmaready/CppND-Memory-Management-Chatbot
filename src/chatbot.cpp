@@ -45,6 +45,64 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+ChatBot::ChatBot(const ChatBot &source) // copy constructor
+{
+    std::cout << "ChatBot COPY CONSTRUCTOR called to create new instance based on instance at " << &source << std::endl;
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+}
+
+ChatBot &ChatBot::operator=(const ChatBot &source) //copy assignment operator
+{
+    std::cout << "ChatBot COPY ASSIGNMENT OPERATOR called to create new instance based on instance at " << &source << std::endl;
+
+    if (this == &source) { return *this; } // self-assignment guard
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot &&source) // move constructor
+{
+    std::cout << "ChatBot MOVE CONSTRUCTOR called to create new instance based on instance at " << &source << std::endl;
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+}
+
+ChatBot &ChatBot::operator=(ChatBot &&source) // move copy constructor
+{
+    std::cout << "ChatBot MOVE ASSIGNMENT OPERATOR called to create new instance based on instance at " << &source << std::endl;
+    
+    if (this == &source) { return *this; } // self-assignment guard
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 

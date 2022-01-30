@@ -19,6 +19,8 @@ private:
 
     std::unique_ptr<ChatLogic> _chatLogic;
 
+
+    void _RegisterChatBot();
     ////
     //// EOF STUDENT CODE
 

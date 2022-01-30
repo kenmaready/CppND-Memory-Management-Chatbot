@@ -121,7 +121,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // create chat logic instance
     _chatLogic = std::make_unique<ChatLogic>(); 
     std::cout << "_chatLogic created: " << &_chatLogic << std::endl; // #DEBUG
-    _chatLogic->getChatbotHandle()->SetChatLogicHandle(_chatLogic);
+    _RegisterChatBot();
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -190,6 +190,11 @@ void ChatBotPanelDialog::render(wxDC &dc)
 
     _image = wxBitmap(imgSmall);
     dc.DrawBitmap(_image, 0, 0, false);
+}
+
+void ChatBotPanelDialog::_RegisterChatBot() 
+{
+    _chatLogic->GetChatbotHandle()->SetChatLogicHandle(_chatLogic);
 }
 
 ChatBotPanelDialogItem::ChatBotPanelDialogItem(wxPanel *parent, wxString text, bool isFromUser)
