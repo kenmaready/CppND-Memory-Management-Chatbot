@@ -2,6 +2,7 @@
 #include <wx/colour.h>
 #include <wx/image.h>
 #include <string>
+#include <iostream>
 #include "chatbot.h"
 #include "chatlogic.h"
 #include "chatgui.h"
@@ -111,14 +112,16 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     _dialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(_dialogSizer);
 
-    // allow for PNG images to be handled
+    // allow for PNG images to be handled.
     wxInitAllImageHandlers();
 
     //// STUDENT CODE
     ////
 
     // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    _chatLogic = std::make_unique<ChatLogic>(); 
+    std::cout << "_chatLogic created: " << &_chatLogic << std::endl; // #DEBUG
+    _chatLogic->getChatbotHandle()->SetChatLogicHandle(_chatLogic);
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -134,8 +137,6 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-
-    delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE
