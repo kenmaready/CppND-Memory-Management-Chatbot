@@ -109,13 +109,13 @@ ChatBot &ChatBot::operator=(ChatBot &&source) // move copy constructor
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
     // loop over all edges and keywords and compute Levenshtein distance to query
-    typedef std::pair<GraphEdge *, int> EdgeDist;
+    typedef std::pair<std::unique_ptr<GraphEdge> *, int> EdgeDist;
     std::vector<EdgeDist> levDists; // format is <ptr,levDist>
 
     for (size_t i = 0; i < _currentNode->GetNumberOfChildEdges(); ++i)
     {
-        GraphEdge *edge = _currentNode->GetChildEdgeAtIndex(i);
-        for (auto keyword : edge->GetKeywords())
+        std::unique_ptr<GraphEdge> *edge = _currentNode->GetChildEdgeAtIndex(i);
+        for (auto keyword : (*edge)->GetKeywords())
         {
             EdgeDist ed{edge, ComputeLevenshteinDistance(keyword, message)};
             levDists.push_back(ed);
@@ -128,7 +128,7 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
     {
         // sort in ascending order of Levenshtein distance (best fit is at the top)
         std::sort(levDists.begin(), levDists.end(), [](const EdgeDist &a, const EdgeDist &b) { return a.second < b.second; });
-        newNode = levDists.at(0).first->GetChildNode(); // after sorting the best edge is at first position
+        newNode = (*levDists.at(0).first)->GetChildNode(); // after sorting the best edge is at first position
     }
     else
     {

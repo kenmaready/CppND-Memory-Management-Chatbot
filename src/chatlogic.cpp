@@ -37,11 +37,7 @@ ChatLogic::~ChatLogic()
 
     // delete all nodes 00 no longer needed as all nodes are managed by smart pointers
 
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
+    // delete all edges no longer needed, all edges are owned by GraphNodes
 
     ////
     //// EOF STUDENT CODE
@@ -156,17 +152,17 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
-                            GraphEdge *edge = new GraphEdge(id);
+                            std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetChildNode(*childNode);
                             edge->SetParentNode(*parentNode);
-                            _edges.push_back(edge);
+                            // _edges.push_back(edge);
 
                             // find all keywords for current nodeGraphNode *
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge);
-                            (*parentNode)->AddEdgeToChildNode(edge);
+                            (*parentNode)->AddEdgeToParentNode(edge);
+                            (*childNode)->AddEdgeToChildNode(&edge);
                         }
 
                         ////

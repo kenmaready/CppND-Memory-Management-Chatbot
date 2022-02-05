@@ -22,14 +22,14 @@ void GraphNode::AddToken(std::string token)
     _answers.push_back(token);
 }
 
-void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
+void GraphNode::AddEdgeToParentNode(std::unique_ptr<GraphEdge> &edge)
 {
-    _parentEdges.push_back(edge);
+    _childEdges.push_back(std::move(edge));
 }
 
-void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
+void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> *edge)
 {
-    _childEdges.push_back(edge);
+    _parentEdges.push_back(edge);
 }
 
 //// STUDENT CODE
@@ -48,12 +48,12 @@ void GraphNode::MoveChatbotToNewNode(std::unique_ptr<GraphNode> &newNode)
 ////
 //// EOF STUDENT CODE
 
-GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
+std::unique_ptr<GraphEdge> *GraphNode::GetChildEdgeAtIndex(int index)
 {
     //// STUDENT CODE
     ////
 
-    return _childEdges[index];
+    return &_childEdges[index];
 
     ////
     //// EOF STUDENT CODE

@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatbot.cpp
-iostream
--
-random
--
-algorithm
--
-ctime
--
-chatlogic.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatlogic.h
-graphnode.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.h
-graphedge.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.h
-chatbot.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatbot.h
-
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatbot.h
 wx/bitmap.h
 -
@@ -37,6 +19,30 @@ memory
 -
 wx/wx.h
 -
+
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatlogic.cpp
+fstream
+-
+sstream
+-
+iostream
+-
+vector
+-
+iterator
+-
+tuple
+-
+algorithm
+-
+graphedge.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.h
+graphnode.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.h
+chatbot.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatbot.h
+chatlogic.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatlogic.h
 
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatlogic.h
 vector
