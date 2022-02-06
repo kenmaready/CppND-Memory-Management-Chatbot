@@ -35,7 +35,7 @@ The project involved modifying a working version of the chatbot which relied mor
 
 Fixed issue causing application to crash when the chat window was closed.
 
-Completed four of the five additional major student tasks in the Memory Management chatbot project, which are:
+Completed the five additional major student tasks in the Memory Management chatbot project, which were:
 
 ### Task 1 : Exclusive Ownership 1
 In file `chatgui.h` / `chatgui.cpp`, make `_chatLogic` an exclusive resource to class `ChatbotPanelDialog` using an appropriate smart pointer. Where required, make changes to the code such that data structures and function parameters reflect the new structure. 
