@@ -49,10 +49,13 @@ ChatBot::ChatBot(const ChatBot &source) // copy constructor
 {
     std::cout << "ChatBot COPY CONSTRUCTOR called to create new instance based on instance at " << &source << std::endl;
 
+    // deep copy image:
+    _image = new wxBitmap();
     _image = source._image;
+
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    (*_chatLogic)->SetChatbotHandle(this);
+    _chatLogic->SetChatbotHandle(this);
 
 }
 
@@ -62,10 +65,13 @@ ChatBot &ChatBot::operator=(const ChatBot &source) //copy assignment operator
 
     if (this == &source) { return *this; } // self-assignment guard
 
+    // deep copy image:
+    _image = new wxBitmap();
     _image = source._image;
+    
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    (*_chatLogic)->SetChatbotHandle(this);
+    _chatLogic->SetChatbotHandle(this);
 
     return *this;
 }
@@ -77,7 +83,7 @@ ChatBot::ChatBot(ChatBot &&source) // move constructor
     _image = source._image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    (*_chatLogic)->SetChatbotHandle(this);
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr;
     source._chatLogic = nullptr;
@@ -93,7 +99,7 @@ ChatBot &ChatBot::operator=(ChatBot &&source) // move copy constructor
     _image = source._image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    (*_chatLogic)->SetChatbotHandle(this);
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr;
     source._chatLogic = nullptr;
@@ -150,7 +156,7 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::string answer = answers.at(dis(generator));
 
     // send selected node answer to user
-    (*_chatLogic)->SendMessageToUser(answer);
+    _chatLogic->SendMessageToUser(answer);
     
 }
 

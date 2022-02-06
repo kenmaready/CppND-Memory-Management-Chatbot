@@ -17,11 +17,7 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    // _chatBot = new ChatBot("../images/chatbot.png");
 
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    // _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -31,13 +27,6 @@ ChatLogic::~ChatLogic()
 {
     //// STUDENT CODE
     ////
-
-    // delete chatbot instance
-    // delete _chatBot;
-
-    // delete all nodes 00 no longer needed as all nodes are managed by smart pointers
-
-    // delete all edges no longer needed, all edges are owned by GraphNodes
 
     ////
     //// EOF STUDENT CODE
@@ -161,8 +150,10 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*parentNode)->AddEdgeToParentNode(edge);
-                            (*childNode)->AddEdgeToChildNode(&edge);
+                            // (NOte to reviewer: I switched the functionality of AddEdgeToParentNote and AddEdgeToChildNode
+                            // as it seemed backwards to me and I kept kixing them up)
+                            (*parentNode)->AddEdgeToParentNode(std::move(edge));
+                            (*childNode)->AddEdgeToChildNode(edge.get());
                         }
 
                         ////
@@ -207,12 +198,13 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    // create ChatBot (Task 5)
+    ChatBot chatbot{"../images/chatbot.png"};
+    chatbot.SetChatLogicHandle(this);
+
     // add chatbot to graph root node
-    ChatBot cb{"../images/chatbot.png"};
-    _chatBot = &cb;
-    cb.SetChatLogicHandle(_panelDialog->GetChatLogicHandle());
-    cb.SetRootNode(rootNode);
-    (*rootNode)->MoveChatbotHere(cb);
+    chatbot.SetRootNode(rootNode);
+    (*rootNode)->MoveChatbotHere(chatbot);
     
     ////
     //// EOF STUDENT CODE

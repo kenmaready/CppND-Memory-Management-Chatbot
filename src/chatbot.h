@@ -17,7 +17,7 @@ private:
     // data handles (not owned)
     GraphNode *_currentNode;
     std::unique_ptr<GraphNode> *_rootNode;
-    const std::unique_ptr<ChatLogic> *_chatLogic;
+    ChatLogic *_chatLogic;
 
     // proprietary functions
     int ComputeLevenshteinDistance(std::string s1, std::string s2);
@@ -41,8 +41,8 @@ public:
     // getters / setters
     void SetCurrentNode(GraphNode *node);
     void SetRootNode(std::unique_ptr<GraphNode> *rootNode) { _rootNode = rootNode; }
-    void SetChatLogicHandle(const std::unique_ptr<ChatLogic> &chatLogic) { _chatLogic = &chatLogic; }
-    const std::unique_ptr<ChatLogic> *GetChatLogicHandle() { return _chatLogic; }
+    void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
+    ChatLogic *GetChatLogicHandle() { return _chatLogic; }
     wxBitmap *GetImageHandle() { return _image; }
 
     // communication

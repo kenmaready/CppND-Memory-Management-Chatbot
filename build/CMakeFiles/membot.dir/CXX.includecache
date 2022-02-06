@@ -32,24 +32,6 @@ memory
 string
 -
 
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatgui.cpp
-wx/filename.h
--
-wx/colour.h
--
-wx/image.h
--
-string
--
-iostream
--
-chatbot.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatbot.h
-chatlogic.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatlogic.h
-chatgui.h
-/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatgui.h
-
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatgui.h
 memory
 -

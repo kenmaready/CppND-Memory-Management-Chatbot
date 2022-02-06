@@ -193,7 +193,7 @@ void ChatBotPanelDialog::render(wxDC &dc)
 
 void ChatBotPanelDialog::_RegisterChatBot() 
 {
-    _chatLogic->GetChatbotHandle()->SetChatLogicHandle(_chatLogic);
+    _chatLogic->GetChatbotHandle()->SetChatLogicHandle(_chatLogic.get());
 }
 
 ChatBotPanelDialogItem::ChatBotPanelDialogItem(wxPanel *parent, wxString text, bool isFromUser)

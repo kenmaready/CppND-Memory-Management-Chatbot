@@ -20,7 +20,7 @@ private:
     std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
 
     // data handles (not owned)
-    std::vector<std::unique_ptr<GraphEdge> *> _parentEdges; // edges to preceding nodes 
+    std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
     ChatBot _chatBot;
 
     ////
@@ -44,12 +44,19 @@ public:
 
     // proprietary functions
     void AddToken(std::string token); // add answers to list
-    void AddEdgeToParentNode(std::unique_ptr<GraphEdge> &edge);
-    void AddEdgeToChildNode(std::unique_ptr<GraphEdge> *edge);
+    // Note to reviewer: I switched the funcitionality of AddEdgeToParentNode
+    // and AddEdgeToChildNode because they seemed backwards to me and it was difficult
+    // to keep them straight:
+    void AddEdgeToParentNode(std::unique_ptr<GraphEdge> edge);
+    void AddEdgeToChildNode(GraphEdge *edge);
 
     //// STUDENT CODE
     ////
 
+    // Note to reviewer: in the first review, I was told this function call was
+    // supposed to take chatbot by value ainstead of reference, but when I changed it 
+    // to do that, it caused an extra unneeded copy, and also resulted in a segmentation
+    // fault when cpp window is closed, so I changed back to "&chatbot" to take by referece:
     void MoveChatbotHere(ChatBot &chatbot);
 
     ////
