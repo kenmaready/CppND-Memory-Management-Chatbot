@@ -90,6 +90,12 @@ memory
 chatgui.h
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/chatgui.h
 
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.cpp
+graphnode.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.h
+graphedge.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.h
+
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.h
 vector
 -
@@ -97,6 +103,12 @@ string
 -
 memory
 -
+
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.cpp
+graphedge.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphedge.h
+graphnode.h
+/home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.h
 
 /home/ken/Coding/Udacity_C++_Nanodegree/CppND-Memory-Management-Chatbot/src/graphnode.h
 vector
