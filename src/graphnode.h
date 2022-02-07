@@ -38,7 +38,7 @@ public:
     // getter / setter
     int GetID() { return _id; }
     int GetNumberOfChildEdges() { return _childEdges.size(); }
-    std::unique_ptr<GraphEdge> *GetChildEdgeAtIndex(int index);
+    GraphEdge *GetChildEdgeAtIndex(int index);
     std::vector<std::string> GetAnswers() { return _answers; }
     int GetNumberOfParents() { return _parentEdges.size(); }
 
@@ -53,16 +53,12 @@ public:
     //// STUDENT CODE
     ////
 
-    // Note to reviewer: in the first review, I was told this function call was
-    // supposed to take chatbot by value ainstead of reference, but when I changed it 
-    // to do that, it caused an extra unneeded copy, and also resulted in a segmentation
-    // fault when cpp window is closed, so I changed back to "&chatbot" to take by referece:
-    void MoveChatbotHere(ChatBot &chatbot);
+    void MoveChatbotHere(ChatBot chatbot);
 
     ////
     //// EOF STUDENT CODE
 
-    void MoveChatbotToNewNode(std::unique_ptr<GraphNode> &newNode);
+    void MoveChatbotToNewNode(GraphNode *newNode);
 };
 
 #endif /* GRAPHNODE_H_ */

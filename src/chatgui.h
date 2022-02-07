@@ -18,9 +18,8 @@ private:
     ////
 
     std::unique_ptr<ChatLogic> _chatLogic;
-
-
-    void _RegisterChatBot();
+    void _RegisterChatBot(); // nelper to provide this _chatLogic handle to the chatbot
+    
     ////
     //// EOF STUDENT CODE
 

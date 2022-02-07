@@ -68,7 +68,7 @@ ChatBot &ChatBot::operator=(const ChatBot &source) //copy assignment operator
     // deep copy image:
     _image = new wxBitmap();
     _image = source._image;
-    
+
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     _chatLogic->SetChatbotHandle(this);
@@ -113,13 +113,13 @@ ChatBot &ChatBot::operator=(ChatBot &&source) // move copy constructor
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
     // loop over all edges and keywords and compute Levenshtein distance to query
-    typedef std::pair<std::unique_ptr<GraphEdge> *, int> EdgeDist;
+    typedef std::pair<GraphEdge *, int> EdgeDist;
     std::vector<EdgeDist> levDists; // format is <ptr,levDist>
 
     for (size_t i = 0; i < _currentNode->GetNumberOfChildEdges(); ++i)
     {
-        std::unique_ptr<GraphEdge> *edge = _currentNode->GetChildEdgeAtIndex(i);
-        for (auto keyword : (*edge)->GetKeywords())
+        GraphEdge *edge = _currentNode->GetChildEdgeAtIndex(i);
+        for (auto keyword : edge->GetKeywords())
         {
             EdgeDist ed{edge, ComputeLevenshteinDistance(keyword, message)};
             levDists.push_back(ed);
@@ -127,12 +127,12 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
     }
 
     // select best fitting edge to proceed along
-    std::unique_ptr<GraphNode> *newNode;
+    GraphNode *newNode;
     if (levDists.size() > 0)
     {
         // sort in ascending order of Levenshtein distance (best fit is at the top)
         std::sort(levDists.begin(), levDists.end(), [](const EdgeDist &a, const EdgeDist &b) { return a.second < b.second; });
-        newNode = (*levDists.at(0).first)->GetChildNode(); // after sorting the best edge is at first position
+        newNode = levDists.at(0).first->GetChildNode(); // after sorting the best edge is at first position
     }
     else
     {
@@ -141,7 +141,7 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
     }
 
     // tell current node to move chatbot to new node
-    _currentNode->MoveChatbotToNewNode(*newNode);
+    _currentNode->MoveChatbotToNewNode(newNode);
 }
 
 void ChatBot::SetCurrentNode(GraphNode *node)

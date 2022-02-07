@@ -10,9 +10,6 @@ GraphNode::~GraphNode()
 {
     //// STUDENT CODE
     ////
-
-    // delete _chatBot; 
-
     ////
     //// EOF STUDENT CODE
 }
@@ -35,30 +32,25 @@ void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
 //// STUDENT CODE
 ////
 
-// Note to reviewer: in the first review, I was told this function call was
-// supposed to take chatbot by value instead of reference (e.g., without the "&"), but when
-// I changed it to do that, it caused an extra unneeded copy, and also resulted in a segmentation
-// fault when cpp window is closed, so I changed back to "&chatbot" to take by referece.
-void GraphNode::MoveChatbotHere(ChatBot &chatbot)
+void GraphNode::MoveChatbotHere(ChatBot chatbot)
 {
     _chatBot = std::move(chatbot);
     _chatBot.SetCurrentNode(this);
 }
 
-void GraphNode::MoveChatbotToNewNode(std::unique_ptr<GraphNode> &newNode)
+void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-    newNode->MoveChatbotHere(_chatBot);
-    // _chatBot = nullptr; // invalidate pointer at source
+    newNode->MoveChatbotHere(std::move(_chatBot));
 }
 ////
 //// EOF STUDENT CODE
 
-std::unique_ptr<GraphEdge> *GraphNode::GetChildEdgeAtIndex(int index)
+GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
 {
     //// STUDENT CODE
     ////
 
-    return &_childEdges[index];
+    return _childEdges[index].get();
 
     ////
     //// EOF STUDENT CODE

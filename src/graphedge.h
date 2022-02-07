@@ -11,8 +11,8 @@ class GraphEdge
 {
 private:
     // data handles (not owned)
-    std::unique_ptr<GraphNode> *_childNode;
-    std::unique_ptr<GraphNode> *_parentNode;
+    GraphNode *_childNode;
+    GraphNode *_parentNode;
 
     // proprietary members
     int _id;
@@ -20,14 +20,14 @@ private:
     
 
 public:
-    // constructor / desctructor
+    // constructor / destructor
     GraphEdge(int id);
 
     // getter / setter
     int GetID() { return _id; }
-    void SetChildNode(std::unique_ptr<GraphNode> &childNode);
-    void SetParentNode(std::unique_ptr<GraphNode> &parentNode);
-    std::unique_ptr<GraphNode> *GetChildNode() { return _childNode; }
+    void SetChildNode(GraphNode *childNode);
+    void SetParentNode(GraphNode *parentNode);
+    GraphNode *GetChildNode() { return _childNode; }
     std::vector<std::string> GetKeywords() { return _keywords; }
 
     // proprietary functions
